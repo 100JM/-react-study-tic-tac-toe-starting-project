@@ -1,10 +1,4 @@
-const initialGameBoard = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null]
-]
-
-function GameBoard({onSelectActivePlayer, turns}) {
+function GameBoard({onSelectActivePlayer, board}) {
     // const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
     // function handleSelectSquare(rowIndex, colIndex) {
@@ -20,18 +14,9 @@ function GameBoard({onSelectActivePlayer, turns}) {
     //     //    상태 업데이트가 여러개 예정되어 있을때 오류를 일으킬 가능성이 매우 크다.
     // }
 
-    let gameBoard = initialGameBoard;
-
-    for(const turn of turns) {
-        const {square, player} = turn;
-        const {row, col} = square;
-
-        gameBoard[row][col] = player;
-    }
-
     return (
         <ol id="game-board">
-            {gameBoard.map((row, rowIndex) => <li key={rowIndex}>
+            {board.map((row, rowIndex) => <li key={rowIndex}>
                 <ol>
                     {row.map((playerSymbol, colIndex) => <li key={colIndex}>
                         <button onClick={() => onSelectActivePlayer(rowIndex, colIndex)} disabled={playerSymbol !== null}>
